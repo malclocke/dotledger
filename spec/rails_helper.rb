@@ -79,6 +79,11 @@ RSpec.configure do |config|
   config.after(:each) do
     DatabaseCleaner.clean
   end
+
+  config.after(:each, js: true) do
+    Capybara.reset_sessions!
+    page.driver.reset!
+  end
 end
 
 Shoulda::Matchers.configure do |config|
